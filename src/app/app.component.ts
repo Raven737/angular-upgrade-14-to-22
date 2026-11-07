@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { VERSION } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -9,8 +9,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './app.component.scss',
     imports: [
       RouterLink, RouterLinkActive, RouterOutlet, MatToolbar, MatSidenavContainer, MatSidenav,
       MatSidenavContent, MatNavList, MatListItem, MatListItemIcon, MatListItemTitle, MatIcon

@@ -1,37 +1,33 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { Task, TaskStatus } from '../../core/task.model';
-import { TaskService } from '../../core/task.service';
+import { Component, computed, inject, input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { Router, RouterLink } from '@angular/router';
+import { Task, TaskStatus } from '../../core/task.model';
+import { TaskService } from '../../core/task.service';
 import { TaskCardComponent } from '../task-card/task-card.component';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-task-detail',
-    template: `
+  selector: 'app-task-detail',
+  template: `
     <a mat-button routerLink="/tasks"><mat-icon>arrow_back</mat-icon> Back to tasks</a>
-    @if (task$ | async; as task) {
-      <app-task-card [task]="task" (statusChange)="changeStatus(task, $event)"></app-task-card>
-    } @else {
+    @if (task(); as task) {
+      <app-task-card [task]="task" (statusChange)="changeStatus(task, $event)" />
+    } @else if (tasks().length) {
       <p>Task not found.</p>
     }
-    `,
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [MatButton, RouterLink, MatIcon, TaskCardComponent, AsyncPipe]
+  `,
+  imports: [MatButton, RouterLink, MatIcon, TaskCardComponent]
 })
-export class TaskDetailComponent implements OnInit {
-  task$!: Observable<Task | undefined>;
+export class TaskDetailComponent {
+  private readonly taskService = inject(TaskService);
+  private readonly router = inject(Router);
 
-  constructor(private route: ActivatedRoute, private router: Router, private taskService: TaskService) {}
+  /** Bound from the :id route parameter (withComponentInputBinding) */
+  readonly id = input.required<string>();
 
-  ngOnInit(): void {
-    this.task$ = this.route.paramMap.pipe(
-      switchMap(params => this.taskService.getById(Number(params.get('id'))))
-    );
-  }
+  protected readonly tasks = toSignal(this.taskService.getAll(), { initialValue: [] });
+  readonly task = computed(() => this.tasks().find(t => t.id === Number(this.id())));
 
   changeStatus(task: Task, status: TaskStatus): void {
     this.taskService.updateStatus(task.id, status);

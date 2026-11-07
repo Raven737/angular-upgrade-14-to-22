@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,10 +8,10 @@ import { Task, TaskStatus } from './task.model';
   providedIn: 'root'
 })
 export class TaskService {
+  private http = inject(HttpClient);
+
   private tasks$ = new BehaviorSubject<Task[]>([]);
   private loaded = false;
-
-  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Task[]> {
     if (!this.loaded) {

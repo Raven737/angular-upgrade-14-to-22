@@ -1,4 +1,4 @@
-import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { Task } from '../../core/task.model';
@@ -11,17 +11,18 @@ import { MatButton } from '@angular/material/button';
 @Component({
     selector: 'app-task-form-dialog',
     templateUrl: './task-form-dialog.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatDialogTitle, ReactiveFormsModule, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatError, MatSelect, MatOption, MatDialogActions, MatButton, MatDialogClose]
 })
 export class TaskFormDialogComponent {
+  private fb = inject(FormBuilder);
+  private dialogRef = inject<MatDialogRef<TaskFormDialogComponent>>(MatDialogRef);
+  data = inject<Task | null>(MAT_DIALOG_DATA);
+
   form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<TaskFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Task | null
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.form = this.fb.group({
       title: [data ? data.title : '', [Validators.required, Validators.maxLength(80)]],
       assignee: [data ? data.assignee : ''],
