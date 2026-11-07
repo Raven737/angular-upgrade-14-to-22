@@ -8,7 +8,8 @@ const LABELS: Record<TaskStatus, string> = {
 };
 
 @Pipe({
-  name: 'statusLabel'
+    name: 'statusLabel',
+    standalone: false
 })
 export class StatusLabelPipe implements PipeTransform {
   transform(value: TaskStatus): string {

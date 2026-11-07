@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskStatus } from '../../core/task.model';
 
 @Component({
-  selector: 'app-task-card',
-  template: `
+    selector: 'app-task-card',
+    template: `
     <mat-card appearance="outlined" class="task-card">
       <mat-card-title>{{ task.title }}</mat-card-title>
       <mat-card-subtitle>{{ task.assignee || 'Unassigned' }} · due {{ task.due | date: 'mediumDate' }}</mat-card-subtitle>
@@ -19,7 +19,8 @@ import { Task, TaskStatus } from '../../core/task.model';
       </mat-card-actions>
     </mat-card>
   `,
-  styles: [`.task-card { margin-bottom: 12px; }`]
+    styles: [`.task-card { margin-bottom: 12px; }`],
+    standalone: false
 })
 export class TaskCardComponent {
   @Input() task!: Task;

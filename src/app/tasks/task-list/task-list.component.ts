@@ -11,9 +11,10 @@ import { TaskService } from '../../core/task.service';
 import { TaskFormDialogComponent } from '../task-form-dialog/task-form-dialog.component';
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+    selector: 'app-task-list',
+    templateUrl: './task-list.component.html',
+    styleUrls: ['./task-list.component.scss'],
+    standalone: false
 })
 export class TaskListComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns = ['title', 'assignee', 'status', 'priority', 'due', 'actions'];

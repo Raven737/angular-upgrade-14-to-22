@@ -6,14 +6,15 @@ import { Task, TaskStatus } from '../../core/task.model';
 import { TaskService } from '../../core/task.service';
 
 @Component({
-  selector: 'app-task-detail',
-  template: `
+    selector: 'app-task-detail',
+    template: `
     <a mat-button routerLink="/tasks"><mat-icon>arrow_back</mat-icon> Back to tasks</a>
     <ng-container *ngIf="task$ | async as task; else notFound">
       <app-task-card [task]="task" (statusChange)="changeStatus(task, $event)"></app-task-card>
     </ng-container>
     <ng-template #notFound><p>Task not found.</p></ng-template>
-  `
+  `,
+    standalone: false
 })
 export class TaskDetailComponent implements OnInit {
   task$!: Observable<Task | undefined>;

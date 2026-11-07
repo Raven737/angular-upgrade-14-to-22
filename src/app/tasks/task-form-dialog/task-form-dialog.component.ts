@@ -4,8 +4,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../../core/task.model';
 
 @Component({
-  selector: 'app-task-form-dialog',
-  templateUrl: './task-form-dialog.component.html'
+    selector: 'app-task-form-dialog',
+    templateUrl: './task-form-dialog.component.html',
+    standalone: false
 })
 export class TaskFormDialogComponent {
   form: FormGroup;
