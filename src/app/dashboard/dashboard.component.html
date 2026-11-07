@@ -6,8 +6,13 @@
 </div>
 
 <h2>Open tasks</h2>
-<div *ngIf="tasks.length; else empty">
-  <app-task-card *ngFor="let task of tasks; trackBy: trackById" [task]="task" (statusChange)="onStatusChange(task, $event)"></app-task-card>
-</div>
-<ng-template #empty><p>No open tasks. Nice work!</p></ng-template>
+@if (tasks.length) {
+  <div>
+    @for (task of tasks; track trackById($index, task)) {
+      <app-task-card [task]="task" (statusChange)="onStatusChange(task, $event)"></app-task-card>
+    }
+  </div>
+} @else {
+  <p>No open tasks. Nice work!</p>
+}
 <a mat-raised-button color="primary" routerLink="/tasks">All tasks</a>

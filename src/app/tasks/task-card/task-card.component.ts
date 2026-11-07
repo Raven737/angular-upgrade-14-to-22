@@ -13,12 +13,18 @@ import { Task, TaskStatus } from '../../core/task.model';
           <mat-chip>{{ task.status | statusLabel }}</mat-chip>
         </mat-chip-set>
       </mat-card-content>
-      <mat-card-actions *ngIf="showActions">
-        <button mat-button *ngIf="task.status !== 'done'" (click)="statusChange.emit('done')">Mark as done</button>
-        <button mat-button *ngIf="task.status === 'done'" (click)="statusChange.emit('todo')">Reopen</button>
-      </mat-card-actions>
+      @if (showActions) {
+        <mat-card-actions>
+          @if (task.status !== 'done') {
+            <button mat-button (click)="statusChange.emit('done')">Mark as done</button>
+          }
+          @if (task.status === 'done') {
+            <button mat-button (click)="statusChange.emit('todo')">Reopen</button>
+          }
+        </mat-card-actions>
+      }
     </mat-card>
-  `,
+    `,
     styles: [`.task-card { margin-bottom: 12px; }`],
     standalone: false
 })

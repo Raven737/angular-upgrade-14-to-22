@@ -9,11 +9,12 @@ import { TaskService } from '../../core/task.service';
     selector: 'app-task-detail',
     template: `
     <a mat-button routerLink="/tasks"><mat-icon>arrow_back</mat-icon> Back to tasks</a>
-    <ng-container *ngIf="task$ | async as task; else notFound">
+    @if (task$ | async; as task) {
       <app-task-card [task]="task" (statusChange)="changeStatus(task, $event)"></app-task-card>
-    </ng-container>
-    <ng-template #notFound><p>Task not found.</p></ng-template>
-  `,
+    } @else {
+      <p>Task not found.</p>
+    }
+    `,
     standalone: false
 })
 export class TaskDetailComponent implements OnInit {
