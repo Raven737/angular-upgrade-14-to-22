@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Fix login redirect",
+    "assignee": "Olena",
+    "status": "todo",
+    "priority": "low",
+    "due": "2026-12-01"
+  },
+  {
+    "id": 2,
+    "title": "Update user profile form",
+    "assignee": "Petro",
+    "status": "in-progress",
+    "priority": "high",
+    "due": "2026-12-03"
+  },
+  {
+    "id": 3,
+    "title": "Add CSV export",
+    "assignee": "Iryna",
+    "status": "done",
+    "priority": "medium",
+    "due": "2026-12-05"
+  },
+  {
+    "id": 4,
+    "title": "Refactor orders table",
+    "assignee": "Taras",
+    "status": "todo",
+    "priority": "low",
+    "due": "2026-12-07"
+  },
+  {
+    "id": 5,
+    "title": "Write unit tests for cart",
+    "assignee": "Mariia",
+    "status": "in-progress",
+    "priority": "high",
+    "due": "2026-12-09"
+  },
+  {
+    "id": 6,
+    "title": "Improve dashboard loading",
+    "assignee": "",
+    "status": "done",
+    "priority": "medium",
+    "due": "2026-12-11"
+  },
+  {
+    "id": 7,
+    "title": "Translate settings page",
+    "assignee": "Olena",
+    "status": "todo",
+    "priority": "low",
+    "due": "2026-12-13"
+  },
+  {
+    "id": 8,
+    "title": "Remove unused dependencies",
+    "assignee": "Petro",
+    "status": "in-progress",
+    "priority": "high",
+    "due": "2026-12-15"
+  },
+  {
+    "id": 9,
+    "title": "Add dark theme",
+    "assignee": "Iryna",
+    "status": "done",
+    "priority": "medium",
+    "due": "2026-12-17"
+  },
+  {
+    "id": 10,
+    "title": "Review pull requests",
+    "assignee": "Taras",
+    "status": "todo",
+    "priority": "low",
+    "due": "2026-12-19"
+  },
+  {
+    "id": 11,
+    "title": "Prepare release notes",
+    "assignee": "Mariia",
+    "status": "in-progress",
+    "priority": "high",
+    "due": "2026-12-21"
+  },
+  {
+    "id": 12,
+    "title": "Optimize images",
+    "assignee": "",
+    "status": "done",
+    "priority": "medium",
+    "due": "2026-12-23"
+  }
+]

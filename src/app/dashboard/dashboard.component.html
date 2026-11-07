@@ -1,0 +1,13 @@
+<h1>Dashboard</h1>
+<div class="stats">
+  <mat-card class="stat"><div class="value">{{ counts.todo }}</div><div>To do</div></mat-card>
+  <mat-card class="stat"><div class="value">{{ counts.inProgress }}</div><div>In progress</div></mat-card>
+  <mat-card class="stat"><div class="value">{{ counts.done }}</div><div>Done</div></mat-card>
+</div>
+
+<h2>Open tasks</h2>
+<div *ngIf="tasks.length; else empty">
+  <app-task-card *ngFor="let task of tasks; trackBy: trackById" [task]="task" (statusChange)="onStatusChange(task, $event)"></app-task-card>
+</div>
+<ng-template #empty><p>No open tasks. Nice work!</p></ng-template>
+<a mat-raised-button color="primary" routerLink="/tasks">All tasks</a>

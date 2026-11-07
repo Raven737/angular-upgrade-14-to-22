@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data ? 'Edit task' : 'New task' }}</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="form.get('title')?.hasError('required')">Title is required</mat-error>
+      <mat-error *ngIf="form.get('title')?.hasError('maxlength')">Max 80 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Assignee</mat-label>
+      <input matInput formControlName="assignee" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="todo">To do</mat-option>
+        <mat-option value="in-progress">In progress</mat-option>
+        <mat-option value="done">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option value="low">Low</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="high">High</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Due date</mat-label>
+      <input matInput type="date" formControlName="due" />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </mat-dialog-actions>
+</form>

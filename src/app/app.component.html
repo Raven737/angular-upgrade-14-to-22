@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <span class="version">Angular {{ angularVersion }}</span>
+</mat-toolbar>
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListIcon>dashboard</mat-icon><span matLine>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/tasks" routerLinkActive="active">
+        <mat-icon matListIcon>checklist</mat-icon><span matLine>Tasks</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
