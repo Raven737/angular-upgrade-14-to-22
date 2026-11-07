@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { Task, TaskStatus } from '../../core/task.model';
-import { MatCard, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
 import { MatChipSet, MatChip } from '@angular/material/chips';
 import { MatButton } from '@angular/material/button';
 import { DatePipe } from '@angular/common';
@@ -10,8 +10,10 @@ import { StatusLabelPipe } from '../../shared/status-label.pipe';
     selector: 'app-task-card',
     template: `
     <mat-card appearance="outlined" class="task-card">
-      <mat-card-title>{{ task().title }}</mat-card-title>
-      <mat-card-subtitle>{{ task().assignee || 'Unassigned' }} · due {{ task().due | date: 'mediumDate' }}</mat-card-subtitle>
+      <mat-card-header>
+        <mat-card-title>{{ task().title }}</mat-card-title>
+        <mat-card-subtitle>{{ task().assignee || 'Unassigned' }} · due {{ task().due | date: 'mediumDate' }}</mat-card-subtitle>
+      </mat-card-header>
       <mat-card-content>
         <mat-chip-set aria-label="Task labels">
           <mat-chip [highlighted]="task().priority === 'high'" color="warn">{{ task().priority }}</mat-chip>
@@ -31,7 +33,7 @@ import { StatusLabelPipe } from '../../shared/status-label.pipe';
     </mat-card>
     `,
     styles: [`.task-card { margin-bottom: 12px; }`],
-    imports: [MatCard, MatCardTitle, MatCardSubtitle, MatCardContent, MatChipSet, MatChip, MatCardActions, MatButton, DatePipe, StatusLabelPipe]
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardContent, MatChipSet, MatChip, MatCardActions, MatButton, DatePipe, StatusLabelPipe]
 })
 export class TaskCardComponent {
   readonly task = input.required<Task>();
