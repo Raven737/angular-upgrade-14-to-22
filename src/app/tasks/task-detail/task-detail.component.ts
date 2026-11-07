@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -15,6 +15,7 @@ import { TaskService } from '../../core/task.service';
       <p>Task not found.</p>
     }
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TaskDetailComponent implements OnInit {

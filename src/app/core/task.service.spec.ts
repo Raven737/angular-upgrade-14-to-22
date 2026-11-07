@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TaskService } from './task.service';
 import { Task } from './task.model';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 
 const TASKS: Task[] = [
   { id: 1, title: 'A', assignee: 'Olena', status: 'todo', priority: 'high', due: '2026-12-01' },
@@ -14,7 +14,7 @@ describe('TaskService', () => {
   let http: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    TestBed.configureTestingModule({ providers: [provideHttpClient(withXhr()), provideHttpClientTesting()] });
     service = TestBed.inject(TaskService);
     http = TestBed.inject(HttpTestingController);
   });

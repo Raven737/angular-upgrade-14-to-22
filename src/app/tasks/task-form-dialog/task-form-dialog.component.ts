@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../../core/task.model';
@@ -6,6 +6,7 @@ import { Task } from '../../core/task.model';
 @Component({
     selector: 'app-task-form-dialog',
     templateUrl: './task-form-dialog.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TaskFormDialogComponent {
