@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Task, TaskStatus } from '../../core/task.model';
+import { MatCard, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MatChipSet, MatChip } from '@angular/material/chips';
+import { MatButton } from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+import { StatusLabelPipe } from '../../shared/status-label.pipe';
 
 @Component({
     selector: 'app-task-card',
@@ -27,7 +32,7 @@ import { Task, TaskStatus } from '../../core/task.model';
     `,
     styles: [`.task-card { margin-bottom: 12px; }`],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatCard, MatCardTitle, MatCardSubtitle, MatCardContent, MatChipSet, MatChip, MatCardActions, MatButton, DatePipe, StatusLabelPipe]
 })
 export class TaskCardComponent {
   @Input() task!: Task;

@@ -1,9 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Task, TaskStatus } from '../../core/task.model';
 import { TaskService } from '../../core/task.service';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { TaskCardComponent } from '../task-card/task-card.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-task-detail',
@@ -16,7 +20,7 @@ import { TaskService } from '../../core/task.service';
     }
     `,
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatButton, RouterLink, MatIcon, TaskCardComponent, AsyncPipe]
 })
 export class TaskDetailComponent implements OnInit {
   task$!: Observable<Task | undefined>;

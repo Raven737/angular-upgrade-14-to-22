@@ -2,13 +2,17 @@ import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/
 import { Subscription } from 'rxjs';
 import { Task, TaskStatus } from '../core/task.model';
 import { TaskService } from '../core/task.service';
+import { MatCard } from '@angular/material/card';
+import { TaskCardComponent } from '../tasks/task-card/task-card.component';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatCard, TaskCardComponent, MatButton, RouterLink]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
